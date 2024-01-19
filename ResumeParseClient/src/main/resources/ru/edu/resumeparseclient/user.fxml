@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.edu.resumeparseclient.Controller">
+    <children>
+        <TabPane prefHeight="350.0" prefWidth="1200" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Резюме">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="322.0" prefWidth="1149.0">
+                            <children>
+                                <Button fx:id="update" layoutX="14.0" layoutY="278.0" mnemonicParsing="false" onAction="#getResumesFromTable" text="Обновить">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <ComboBox fx:id="searchCategory" layoutX="329.0" layoutY="16.0" prefWidth="150.0" />
+                                <CheckBox fx:id="caseSensitiveSearch" layoutX="494.0" layoutY="20.0" text="Учитывать регистр" />
+                                <TextField fx:id="textFieldSearch" layoutX="22.0" layoutY="16.0" prefHeight="26.0" prefWidth="284.0" promptText="Введите текст поиска" />
+                                <Button layoutX="636.0" layoutY="16.0" mnemonicParsing="false" onAction="#setSearchResume" text="Поиск" />
+                                <TableView fx:id="tableView" editable="false" layoutX="14.0" layoutY="49.0" prefHeight="200.0" prefWidth="1125.0">
+                                    <columns>
+                                        <TableColumn fx:id="id" prefWidth="31.199996948242188" text="Id" />
+                                        <TableColumn fx:id="city" prefWidth="112.0" text="Город" />
+                                        <TableColumn fx:id="title" prefWidth="136.19998168945312" text="Должность" />
+                                        <TableColumn fx:id="skills" prefWidth="372.20001220703125" text="Навыки" />
+                                        <TableColumn fx:id="gender" minWidth="0.0" prefWidth="90.800048828125" text="Пол" />
+                                        <TableColumn fx:id="url" prefWidth="389.199951171875" text="Ссылка на резюме" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Об авторе">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="14.0" layoutY="23.0" prefHeight="51.0" prefWidth="444.0" text="Приложение разработал студент ЗБ-ПИ21-1 Еремеев Валерий" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

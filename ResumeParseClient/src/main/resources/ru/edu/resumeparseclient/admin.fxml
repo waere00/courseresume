@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.edu.resumeparseclient.Controller">
+    <children>
+        <TabPane prefHeight="350.0" prefWidth="1200" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Резюме">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="322.0" prefWidth="1149.0">
+                            <children>
+                                <Button fx:id="update" layoutX="14.0" layoutY="278.0" mnemonicParsing="false" onAction="#getResumesFromTable" text="Обновить">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <ComboBox fx:id="searchCategory" layoutX="329.0" layoutY="16.0" prefWidth="150.0" />
+                                <CheckBox fx:id="caseSensitiveSearch" layoutX="494.0" layoutY="20.0" text="Учитывать регистр" />
+                                <TextField fx:id="textFieldSearch" layoutX="22.0" layoutY="16.0" prefHeight="26.0" prefWidth="284.0" promptText="Введите текст поиска" />
+                                <Button layoutX="636.0" layoutY="16.0" mnemonicParsing="false" onAction="#setSearchResume" text="Поиск" />
+                                <TableView fx:id="tableView" editable="true" layoutX="16.0" layoutY="49.0" prefHeight="200.0" prefWidth="1125.0">
+                                    <columns>
+                                        <TableColumn fx:id="id" prefWidth="31.199996948242188" text="Id" />
+                                        <TableColumn fx:id="city" prefWidth="112.0" text="Город" />
+                                        <TableColumn fx:id="title" prefWidth="136.19998168945312" text="Должность" />
+                                        <TableColumn fx:id="skills" prefWidth="372.20001220703125" text="Навыки" />
+                                        <TableColumn fx:id="gender" minWidth="0.0" prefWidth="90.800048828125" text="Пол" />
+                                        <TableColumn fx:id="url" prefWidth="389.199951171875" text="Ссылка на резюме" />
+                                    </columns>
+                                </TableView>
+                        <Button fx:id="delete" layoutX="124.0" layoutY="278.0" mnemonicParsing="false" onAction="#deleteItem" text="Удалить резюме">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="update1" layoutX="278.0" layoutY="278.0" mnemonicParsing="false" onAction="#saveResumes" text="Сохранить изменения">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab" text="Добавить резюме">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="25.0" layoutY="25.0" prefHeight="27.0" prefWidth="58.0" text="Город" />
+                                <TextField fx:id="textFieldCity" layoutX="95.0" layoutY="25.0" promptText="Москва" />
+                                <Label layoutX="25.0" layoutY="65.0" text="Должность" />
+                                <TextField fx:id="textFieldTitle" layoutX="95.0" layoutY="65.0" promptText="Java - разработчик" />
+                                <Label layoutX="25.0" layoutY="100.0" text="Навыки" />
+                                <TextArea fx:id="textFieldSkills" layoutX="95.0" layoutY="100.0" prefHeight="54.0" prefWidth="430.0" promptText="Java Developer" />
+                                <Label layoutX="25.0" layoutY="180.0" text="Пол" />
+                                <TextField fx:id="textFieldGender" layoutX="95.0" layoutY="180.0" />
+                                <Label layoutX="25.0" layoutY="230.0" text="Ссылка на резюме" />
+                                <TextField fx:id="textFieldUrl" layoutX="140.0" layoutY="225.0" prefHeight="26.0" prefWidth="387.0" />
+                                <Button fx:id="buttonSendToServer" layoutX="25.0" layoutY="280.0" mnemonicParsing="false" onAction="#sendToServer" prefHeight="26.0" prefWidth="138.0" text="Отправить на сервер" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="jsonUploadTab" text="Загрузить JSON">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="jsonTextField" layoutX="95.0" layoutY="25.0" promptText="Введите JSON данные" />
+                                <Button fx:id="uploadJsonButton" layoutX="248.0" layoutY="255.0" mnemonicParsing="false" onAction="#uploadJsonToServer" prefHeight="35.0" prefWidth="172.0" text="Отправить JSON" />
+                                <Label fx:id="UploadLabelText" layoutX="230.0" layoutY="226.0" text="JSON данные не могут быть пустыми!" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Загрузка файла">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="321.0" layoutY="41.0" text="Загркзка JSON файла">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <Label fx:id="UploadLabel" layoutX="344.0" layoutY="84.0" prefHeight="18.0" prefWidth="161.0" text="Пожалуйста загрузите файл" />
+
+                                <TextField fx:id="filePathField" editable="false" layoutX="323.0" layoutY="124.0" prefHeight="39.0" prefWidth="310.0" promptText="Выберете JSON файл..." />
+                                <Button layoutX="243.0" layoutY="124.0" onAction="#browseButtonAction" prefHeight="40.0" prefWidth="69.0" text="Выбрать" />
+
+                                <Button layoutX="381.0" layoutY="189.0" onAction="#uploadButtonAction" prefHeight="40.0" prefWidth="75.0" text="Загрузить" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Об авторе">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="14.0" layoutY="23.0" prefHeight="51.0" prefWidth="444.0" text="Приложение разработал студент ЗБ-ПИ21-1 Еремеев Валерий" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
