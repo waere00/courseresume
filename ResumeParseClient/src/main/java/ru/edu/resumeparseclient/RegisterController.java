@@ -6,10 +6,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Register {
-    private String fxml;
+public class RegisterController {
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 850, 350);
         stage.setTitle("Регистрация в системе");
         stage.setScene(scene);
