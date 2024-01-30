@@ -4,26 +4,26 @@ package ru.edu.resumeparseclient;
  */
 public class ResumeTemp {
     public String id;
-    public String areaName;
+    public String city;
     public String title;
     public String skills;
     public String gender;
-    public String alternateUrl;
+    public String url;
     public ResumeTemp(){}
 
-    public ResumeTemp(String areaName, String title, String skills, String gender, String alternateUrl) {
-        this.areaName = areaName;
+    public ResumeTemp(String city, String title, String skills, String gender, String url) {
+        this.city = city;
         this.title = title;
         this.skills = skills;
         this.gender = gender;
-        this.alternateUrl = alternateUrl;
+        this.url = url;
     }
-    public ResumeTemp(String id, String areaName, String title, String skills, String gender, String alternateUrl) {
+    public ResumeTemp(String id,String city, String title, String skills, String gender, String url) {
         this.id = id;
-        this.areaName = areaName;
+        this.city = city;
         this.title = title;
         this.skills = skills;
         this.gender = gender;
-        this.alternateUrl = alternateUrl;
+        this.url = url;
     }
 }

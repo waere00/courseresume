@@ -8,41 +8,41 @@ import javafx.beans.property.StringProperty;
  */
 public class Resume {
     public StringProperty id;
-    public StringProperty areaName;
+    public StringProperty city;
     public StringProperty title;
     public StringProperty skills;
     public StringProperty gender;
-    public StringProperty alternateUrl;
+    public StringProperty url;
 
-    public Resume(String areaName, String title, String skills, String gender, String alternateUrl) {
-        this.areaName = new SimpleStringProperty(this, "areaName", areaName);
+    public Resume(String city, String title, String skills, String gender, String url) {
+        this.city = new SimpleStringProperty(this, "city", city);
         this.title = new SimpleStringProperty(this, "title", title);
         this.skills = new SimpleStringProperty(this, "skills", skills);
         this.gender = new SimpleStringProperty(this, "gender", gender);
-        this.alternateUrl = new SimpleStringProperty(this, "alternateUrl", alternateUrl);
+        this.url = new SimpleStringProperty(this, "url", url);
     }
-    public Resume(String id, String areaName, String title, String skills, String gender, String alternateUrl) {
+    public Resume(String id, String city, String title, String skills, String gender, String url) {
         this.id = new SimpleStringProperty(this, "id", id);
-        this.areaName = new SimpleStringProperty(this, "areaName", areaName);
+        this.city = new SimpleStringProperty(this, "city", city);
         this.title = new SimpleStringProperty(this, "title", title);
         this.skills = new SimpleStringProperty(this, "skills", skills);
         this.gender = new SimpleStringProperty(this, "gender", gender);
-        this.alternateUrl = new SimpleStringProperty(this, "alternateUrl", alternateUrl);
+        this.url = new SimpleStringProperty(this, "url", url);
     }
 
-    public String getAreaName() {
-        return areaName.get();
+    public String getCity() {
+        return city.get();
     }
     public String getId() {return id.get();}
     public StringProperty idProperty() {return id;}
     public void setId(String id) {this.id.set(id);}
 
-    public StringProperty areaNameProperty() {
-        return areaName;
+    public StringProperty cityProperty() {
+        return city;
     }
 
-    public void setAreaName(String areaName) {
-        this.areaName.set(areaName);
+    public void setCity(String city) {
+        this.city.set(city);
     }
 
     public String getTitle() {
@@ -81,15 +81,15 @@ public class Resume {
         this.gender.set(gender);
     }
 
-    public String getAlternateUrl() {
-        return alternateUrl.get();
+    public String getUrl() {
+        return url.get();
     }
 
-    public StringProperty alternateUrlProperty() {
-        return alternateUrl;
+    public StringProperty urlProperty() {
+        return url;
     }
 
-    public void setAlternateUrl(String alternateUrl) {
-        this.alternateUrl.set(alternateUrl);
+    public void setUrl(String url) {
+        this.url.set(url);
     }
 }

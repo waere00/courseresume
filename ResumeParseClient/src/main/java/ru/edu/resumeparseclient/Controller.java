@@ -22,6 +22,10 @@ import java.util.stream.Collectors;
 
 public class Controller implements Initializable {
 
+    public static String authorized = "UNAUTHORIZED";
+
+    @FXML
+    private Button update = new Button();
     @FXML
     private TableView tableView = new TableView();
     @FXML
@@ -34,7 +38,7 @@ public class Controller implements Initializable {
     private ObservableList<Resume> resumesData = FXCollections.<Resume>observableArrayList();
 
     @FXML
-    private TableColumn<Resume, String> areaName = new TableColumn<Resume, String>("Город");
+    private TableColumn<Resume, String> city = new TableColumn<Resume, String>("Город");
     @FXML
     private TableColumn<Resume, String> id = new TableColumn<Resume, String>("Id");
     @FXML
@@ -44,13 +48,13 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Resume, String> gender = new TableColumn<Resume, String>("Пол");
     @FXML
-    private TableColumn<Resume, String> alternateUrl = new TableColumn<Resume, String>("Ссылка на резюме");
+    private TableColumn<Resume, String> url = new TableColumn<Resume, String>("Ссылка на резюме");
     @FXML
     private Button search = new Button();
     //***********************************************************************************************
     //Вкладка добавить резюме
     @FXML
-    private TextField textFieldAreaName = new TextField();
+    private TextField textFieldCity = new TextField();
     @FXML
     private TextField textFieldTitle = new TextField();
     @FXML
@@ -58,7 +62,7 @@ public class Controller implements Initializable {
     @FXML
     private TextField textFieldGender = new TextField();
     @FXML
-    private TextField textFieldAlternateUrl = new TextField();
+    private TextField textFieldUrl = new TextField();
     @FXML
     private Button buttonSendToServer = new Button();
     @FXML
@@ -78,20 +82,19 @@ public class Controller implements Initializable {
     @FXML
     private TextField filePathField = new TextField();
 
-    private ObservableList<Resume> masterResumesData = FXCollections.observableArrayList();
-
     @FXML
     private void uploadJsonToServer() {
         uploadToServer(jsonTextField.getText(), labelText);
     }
     public String toJson(ResumeTemp resumeTemp) {
         return String.format("[{\"resume\":{\"area\":{\"name\":\"%s\"},\"title\":\"%s\",\"gender\":{\"name\":\"%s\"},\"skills\":\"%s\",\"alternate_url\":\"%s\"}}]",
-                resumeTemp.areaName, resumeTemp.title, resumeTemp.gender, resumeTemp.skills, resumeTemp.alternateUrl);
+                resumeTemp.city, resumeTemp.title, resumeTemp.gender, resumeTemp.skills, resumeTemp.url);
     }
 
     private void uploadToServer(String jsonString, Label labelText) {
         if (!jsonString.isEmpty()) {
             try {
+                // Sending JSON data to the server
                 URL url = new URL("http://localhost:8080/uploadJson");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -113,10 +116,11 @@ public class Controller implements Initializable {
                         while ((responseLine = br.readLine()) != null) {
                             response.append(responseLine.trim());
                         }
-                        System.out.println("Server Response: " + response);
-                        labelText.setText("JSON успешно загружен.");
+                        System.out.println("Server Response: " + response.toString());
+                        labelText.setText("JSON data uploaded successfully!");
                     }
                 } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
+                    // Invalid JSON format or server-side processing error
                     try (BufferedReader errorReader = new BufferedReader(
                             new InputStreamReader(connection.getErrorStream(), StandardCharsets.UTF_8))) {
                         StringBuilder errorResponse = new StringBuilder();
@@ -124,19 +128,21 @@ public class Controller implements Initializable {
                         while ((errorLine = errorReader.readLine()) != null) {
                             errorResponse.append(errorLine.trim());
                         }
-                        System.err.println("Server Error Response: " + errorResponse);
-                        labelText.setText("Ошибка: " + errorResponse);
+                        System.err.println("Server Error Response: " + errorResponse.toString());
+                        labelText.setText("Error: " + errorResponse.toString());
                     }
                 } else {
+                    // Handle other HTTP error responses
                     System.err.println("HTTP Error Response: " + responseCode);
-                    labelText.setText("Ошибка при загрузке JSON:" + responseCode);
+                    labelText.setText("Error uploading JSON data. Please try again.");
                 }
             } catch (IOException e) {
+                // Handle IOException (network or connection issues)
                 System.err.println("IOException: " + e.getMessage());
-                labelText.setText("Ошибка подключения к серверу:" + e.getMessage());
+                labelText.setText("Error: Network or server connectivity issue. Please check your connection and try again.");
             }
         } else {
-            labelText.setText("JSON не должен быть пуст.");
+            labelText.setText("JSON data cannot be empty!");
         }
     }
 
@@ -149,11 +155,11 @@ public class Controller implements Initializable {
     @FXML
     private void sendToServer() {
             ResumeTemp resumeTemp = new ResumeTemp(
-                    textFieldAreaName.getText(),
+                    textFieldCity.getText(),
                     textFieldTitle.getText(),
                     textFieldSkills.getText(),
                     textFieldGender.getText(),
-                    textFieldAlternateUrl.getText()
+                    textFieldUrl.getText()
             );
             Gson gson = new Gson();
             String jsonString = toJson(resumeTemp);
@@ -170,43 +176,43 @@ public class Controller implements Initializable {
     @FXML
     private void getResumesFromTable() {
         resumesData.clear();
-        masterResumesData.clear();
         String text = getResumes();
         Gson gson = new Gson();
         JsonParser jsonParser = new JsonParser();
         try {
             JsonArray jsonArray = jsonParser.parse(text).getAsJsonArray();
             for (JsonElement jsonElement : jsonArray) {
-                // Помещаем jsonElement в класс ResumeTemp(временный класс)
+                //Помещаем jsonElement в класс ResumeTemp(временный класс)
                 ResumeTemp resumeTemp = gson.fromJson(jsonElement, ResumeTemp.class);
-                Resume resume = new Resume(resumeTemp.id,resumeTemp.areaName,
+                //ResumeTemp помещаем в класс auction
+                Resume resume = new Resume(resumeTemp.id,resumeTemp.city,
                         resumeTemp.title,
                         resumeTemp.skills,
                         resumeTemp.gender,
-                        resumeTemp.alternateUrl
+                        resumeTemp.url
                 );
-                // Resume помещаем в массив resumesData, другими словами, в таблицу для отображения данных
-                masterResumesData.add(resume);
+                //Resume помещаем в массив resumesData, другими словами, в таблицу для отображения данных
+                resumesData.add(resume);
                 tableView.setItems(resumesData);
                 id.setCellValueFactory(cellData -> cellData.getValue().idProperty());
-                areaName.setCellValueFactory(cellData -> cellData.getValue().areaNameProperty());
+                city.setCellValueFactory(cellData -> cellData.getValue().cityProperty());
                 title.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
                 skills.setCellValueFactory(cellData -> cellData.getValue().skillsProperty());
                 gender.setCellValueFactory(cellData -> cellData.getValue().genderProperty());
-                alternateUrl.setCellValueFactory(cellData -> cellData.getValue().alternateUrlProperty());
-                alternateUrl.setCellFactory(TextFieldTableCell.<Resume>forTableColumn());
-                alternateUrl.setOnEditCommit(
+                url.setCellValueFactory(cellData -> cellData.getValue().urlProperty());
+                url.setCellFactory(TextFieldTableCell.<Resume>forTableColumn());
+                url.setOnEditCommit(
                         (TableColumn.CellEditEvent<Resume, String> t) -> {
                             ((Resume) t.getTableView().getItems().get(
                                     t.getTablePosition().getRow())
-                            ).setAlternateUrl(t.getNewValue());
+                            ).setUrl(t.getNewValue());
                         });
-                areaName.setCellFactory(TextFieldTableCell.<Resume>forTableColumn());
-                areaName.setOnEditCommit(
+                city.setCellFactory(TextFieldTableCell.<Resume>forTableColumn());
+                city.setOnEditCommit(
                         (TableColumn.CellEditEvent<Resume, String> t) -> {
                             ((Resume) t.getTableView().getItems().get(
                                     t.getTablePosition().getRow())
-                            ).setAreaName(t.getNewValue());
+                            ).setCity(t.getNewValue());
                         });
                 title.setCellFactory(TextFieldTableCell.<Resume>forTableColumn());
                 title.setOnEditCommit(
@@ -230,8 +236,7 @@ public class Controller implements Initializable {
                             ).setGender(t.getNewValue());
                         });
             }
-            resumesData.setAll(masterResumesData);
-        } catch (JsonSyntaxException e) { e.printStackTrace();
+        } catch (JsonSyntaxException e) {
         }
     }
 
@@ -241,7 +246,7 @@ public class Controller implements Initializable {
      * @return
      */
     private String getResumes() {
-        URL url;
+        URL url = null;
         try {
             url = new URL("http://localhost:8080/getResumes");
             URLConnection connection = url.openConnection();
@@ -259,20 +264,20 @@ public class Controller implements Initializable {
 
     public void setSearch(String searchText, String category) {
         if (searchText == null || searchText.trim().isEmpty() || category == null) {
-            resumesData.setAll(masterResumesData);
             return;
         }
 
         String searchLowerCase = caseSensitiveSearch.isSelected() ? searchText : searchText.toLowerCase();
         Predicate<Resume> complexPredicate = createComplexPredicate(searchLowerCase, category);
 
-        List<Resume> filteredData = masterResumesData.stream()
+        List<Resume> filteredData = resumesData.stream()
                 .filter(complexPredicate)
                 .collect(Collectors.toList());
 
-        resumesData.clear();
-        resumesData.addAll(filteredData);
-
+        if (!filteredData.isEmpty()) {
+            resumesData.clear();
+            resumesData.addAll(filteredData);
+        }
     }
 
     private Predicate<Resume> createComplexPredicate(String searchQuery, String category) {
@@ -283,27 +288,29 @@ public class Controller implements Initializable {
     }
 
     private String getResumeDataByCategory(Resume resume, String category) {
-        if (category.equals("Все")) {
-            String allFieldsConcatenated = String.join(" ", resume.getAreaName(), resume.getGender(), resume.getTitle(), resume.getSkills(), resume.getAlternateUrl());
-            return caseSensitiveSearch.isSelected() ? allFieldsConcatenated : allFieldsConcatenated.toLowerCase();
+        switch (category) {
+            case "Город":
+                return caseSensitiveSearch.isSelected() ? resume.getCity() : resume.getCity().toLowerCase();
+            case "Пол":
+                return caseSensitiveSearch.isSelected() ? resume.getGender() : resume.getGender().toLowerCase();
+            case "Должность":
+                return caseSensitiveSearch.isSelected() ? resume.getTitle() : resume.getTitle().toLowerCase();
+            case "Навыки":
+                return caseSensitiveSearch.isSelected() ? resume.getSkills() : resume.getSkills().toLowerCase();
+            case "URL":
+                return caseSensitiveSearch.isSelected() ? resume.getUrl() : resume.getUrl().toLowerCase();
+            default:
+                return null;
         }
-        return switch (category) {
-            case "Город" -> caseSensitiveSearch.isSelected() ? resume.getAreaName() : resume.getAreaName().toLowerCase();
-            case "Пол" -> caseSensitiveSearch.isSelected() ? resume.getGender() : resume.getGender().toLowerCase();
-            case "Должность" -> caseSensitiveSearch.isSelected() ? resume.getTitle() : resume.getTitle().toLowerCase();
-            case "Навыки" -> caseSensitiveSearch.isSelected() ? resume.getSkills() : resume.getSkills().toLowerCase();
-            case "URL" -> caseSensitiveSearch.isSelected() ? resume.getAlternateUrl() : resume.getAlternateUrl().toLowerCase();
-            default -> null;
-        };
-        }
+    }
+
     /**
-     * Инициализация, выставление категорий поиска и выбор категории поиска по-умолчанию
+     * При инициализации проверяем, зашёл ли пользователь под админом или нет
      *
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        searchCategory.setItems(FXCollections.observableArrayList("Все", "Город", "Пол", "Должность", "Навыки", "URL"));
-        searchCategory.getSelectionModel().selectFirst();
+        searchCategory.setItems(FXCollections.observableArrayList("Город", "Пол", "Должность", "Навыки", "URL"));
     }
 
     @FXML
@@ -329,6 +336,7 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         } else {
+            // No file
         }
     }
 
@@ -337,11 +345,11 @@ public class Controller implements Initializable {
         for (Resume resume : resumesData) {
             ResumeTemp resumeTemp = new ResumeTemp(
                     resume.getId(),
-                    resume.getAreaName(),
+                    resume.getCity(),
                     resume.getTitle(),
                     resume.getSkills(),
                     resume.getGender(),
-                    resume.getAlternateUrl()
+                    resume.getUrl()
             );
             resumeList.add(resumeTemp);
         }
@@ -369,7 +377,7 @@ public class Controller implements Initializable {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    System.out.println(response);
+                    System.out.println(response.toString());
                 }
             } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
                 try (BufferedReader errorReader = new BufferedReader(
@@ -379,14 +387,15 @@ public class Controller implements Initializable {
                     while ((errorLine = errorReader.readLine()) != null) {
                         errorResponse.append(errorLine.trim());
                     }
-                    System.out.println("Сервер отправил ошибку: " + errorResponse);
+                    System.out.println("Server Error Response: " + errorResponse.toString());
                 }
             } else {
                 System.out.println("Ошибка при отправке данных. Пожалуйста, повторите попытку.");
             }
         } catch (IOException e) {
+            // Handle IOException (network or connection issues)
             System.out.println("Ошибка: Проблемы с сетью или сервером. Проверьте подключение и повторите попытку.");
-            e.printStackTrace();
+            e.printStackTrace();  // Log the exception for developers
         }
     }
 
@@ -415,7 +424,7 @@ public class Controller implements Initializable {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    System.out.println(response);
+                    System.out.println(response.toString());
                 }
                 getResumesFromTable();
     }

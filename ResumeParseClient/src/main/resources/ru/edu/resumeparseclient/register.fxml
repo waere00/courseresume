@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.edu.resumeparseclient.LoginController">
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.edu.resumeparseclient.InputController">
 <Label text="Регистрация в системе">
     <font>
         <Font name="System Bold" size="23.0" />
@@ -25,14 +25,8 @@
 <HBox alignment="CENTER" spacing="10">
     <CheckBox fx:id="checkboxreg" text="Как администратор" />
 </HBox>
-    <Label fx:id="errorMessage" textFill="red"/>
 <HBox alignment="CENTER" spacing="10">
-    <Button fx:id="regButton" onAction="#buttonRegister" text="Зарегистрироваться">
-        <font>
-            <Font size="17.0" />
-        </font>
-    </Button>
-    <Button fx:id="cancelButton" onAction="#handleCancelButton" text="Отмена">
+    <Button fx:id="reg" onAction="#buttonRegister" text="Зарегистрироваться">
         <font>
             <Font size="17.0" />
         </font>
