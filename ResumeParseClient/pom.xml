@@ -89,7 +89,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.7.14</version>
                 <configuration>
-                    <mainClass>ru.edu.resumeparseclient.InputController</mainClass>
+                    <mainClass>ru.edu.resumeparseclient.LoginController</mainClass>
                     <layout>JAR</layout>
                 </configuration>
                 <executions>

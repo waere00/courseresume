@@ -1,4 +1,4 @@
-package ru.edu.ResumeParseServer.hibernate;
+package ru.edu.ResumeParseServer.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
@@ -13,16 +13,16 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    public int id;
 
     @NaturalId
-    @Column(name = "login")
-    private String login;
+    @Column(name = "login", unique = true)
+    public String login;
 
     @Column(name = "password")
-    private String password;
+    public String password;
     @Column(name = "is_admin")
-    private boolean admin;
+    public boolean admin;
 
     public Users(){}
 
@@ -41,7 +41,11 @@ public class Users {
     }
     public boolean isAdmin() {
         return admin;
-    };
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 
     public String getLogin() {
         return login;

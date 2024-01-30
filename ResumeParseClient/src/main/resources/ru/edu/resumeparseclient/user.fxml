@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.edu.resumeparseclient.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.edu.resumeparseclient.Controller">
     <children>
         <TabPane prefHeight="350.0" prefWidth="1200" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -24,11 +24,11 @@
                                 <TableView fx:id="tableView" editable="false" layoutX="14.0" layoutY="49.0" prefHeight="200.0" prefWidth="1125.0">
                                     <columns>
                                         <TableColumn fx:id="id" prefWidth="31.199996948242188" text="Id" />
-                                        <TableColumn fx:id="city" prefWidth="112.0" text="Город" />
+                                        <TableColumn fx:id="areaName" prefWidth="112.0" text="Город" />
                                         <TableColumn fx:id="title" prefWidth="136.19998168945312" text="Должность" />
                                         <TableColumn fx:id="skills" prefWidth="372.20001220703125" text="Навыки" />
                                         <TableColumn fx:id="gender" minWidth="0.0" prefWidth="90.800048828125" text="Пол" />
-                                        <TableColumn fx:id="url" prefWidth="389.199951171875" text="Ссылка на резюме" />
+                                        <TableColumn fx:id="alternateUrl" prefWidth="389.199951171875" text="Ссылка на резюме" />
                                     </columns>
                                 </TableView>
                             </children>

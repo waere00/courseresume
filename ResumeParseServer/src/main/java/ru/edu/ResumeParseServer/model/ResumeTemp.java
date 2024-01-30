@@ -1,41 +1,41 @@
-package ru.edu.ResumeParseServer.parsing;
+package ru.edu.ResumeParseServer.model;
 
 /**
  * Класс используется для обертки POST сообщения от клиента и дальнейшей записи в БД
  */
 public class ResumeTemp {
-    public String city;
+    public String areaName;
     public String title;
     public String skills;
     public String gender;
-    public String url;
-    public String id;
+    public String alternateUrl;
+    public int id;
     public ResumeTemp(){}
 
-    public ResumeTemp(String city, String title, String skills, String gender, String url) {
-        this.city = city;
+    public ResumeTemp(String areaName, String title, String skills, String gender, String alternateUrl) {
+        this.areaName = areaName;
         this.title = title;
         this.skills = skills;
         this.gender = gender;
-        this.url = url;
+        this.alternateUrl = alternateUrl;
     }
-    public ResumeTemp(String id,String city, String title, String skills, String gender, String url) {
+    public ResumeTemp(int id, String areaName, String title, String skills, String gender, String alternateUrl) {
         this.id = id;
-        this.city = city;
+        this.areaName = areaName;
         this.title = title;
         this.skills = skills;
         this.gender = gender;
-        this.url = url;
+        this.alternateUrl = alternateUrl;
     }
-    public String getId() {return id;}
-    public void setId(String id) {this.id = id;}
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
 
-    public String getCity() {
-        return city;
+    public String getAreaName() {
+        return areaName;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     public String getTitle() {
@@ -62,11 +62,11 @@ public class ResumeTemp {
         this.gender = gender;
     }
 
-    public String getUrl() {
-        return url;
+    public String getAlternateUrl() {
+        return alternateUrl;
     }
 
-    public void setUrl(String url) {
-        this.url =url;
+    public void setAlternateUrl(String alternateUrl) {
+        this.alternateUrl = alternateUrl;
     }
 }
