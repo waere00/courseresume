@@ -10,7 +10,7 @@ public class ResumeParseServerApplication {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		SpringApplication.run(ResumeParseServerApplication.class, args);
-//		FileParser fileParser = new FileParser();
+//		DataService fileParser = new DataService();
 //		List<Resume> resumes = new ArrayList<>();
 //		fileParser.parseFiles(resumes);
 //		fileParser.writeResumes(resumes);

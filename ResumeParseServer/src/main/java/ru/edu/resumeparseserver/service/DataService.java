@@ -14,7 +14,7 @@ import java.util.List;
  * Класс предназначен для записи данных и работы с БД
  */
 @Service
-public class FileParser {
+public class DataService {
     @Autowired
     private ResumeRepository resumeRepository;
 

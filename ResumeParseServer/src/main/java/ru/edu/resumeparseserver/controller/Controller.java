@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import ru.edu.resumeparseserver.model.Resume;  // Import your Resumes class
-import ru.edu.resumeparseserver.service.FileParser;
+import ru.edu.resumeparseserver.service.DataService;
 
 /**
  * Контроллер для взаимосвязи с клиентами по RESTful
@@ -23,7 +23,7 @@ import ru.edu.resumeparseserver.service.FileParser;
 public class Controller {
 
     @Autowired
-    private FileParser fileParser;
+    private DataService dataService;
     private static final Logger log = LoggerFactory.getLogger(Controller.class);
 
     @GetMapping("/")
@@ -33,7 +33,7 @@ public class Controller {
     @PostMapping("/update")
     String updateDatabase(@RequestBody List<ResumeTemp> resumeList)
     {
-        if (!fileParser.loadResumes(resumeList)){
+        if (!dataService.loadResumes(resumeList)){
             return "Data loaded successfully";
         }else{
             return "Error when loading data";
@@ -42,11 +42,11 @@ public class Controller {
 
     @GetMapping("/getResumes")
     public List<Resume> getResumes() throws FileNotFoundException {
-        return fileParser.getResumes();
+        return dataService.getResumes();
     }
     @PostMapping("/delete")
     public String deleteResume(@RequestBody String id) {
-        return fileParser.deleteResume(id);
+        return dataService.deleteResume(id);
     }
     @PostMapping("/uploadJson")
     public ResponseEntity<String> uploadJson(@RequestBody String jsonString) {
@@ -55,7 +55,7 @@ public class Controller {
             System.out.println(jsonString);
             List<Resume> resumesData = new ArrayList<>();
             JsonParserUtil.parseString(resumesData, jsonString);
-            fileParser.writeResumes(resumesData);
+            dataService.writeResumes(resumesData);
 
             return ResponseEntity.ok("JSON data successfully processed and uploaded to the database.");
         } catch (JsonSyntaxException e) {
