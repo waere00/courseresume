@@ -1,4 +1,4 @@
-package ru.edu.ResumeParseServer.model;
+package ru.edu.resumeparseserver.model;
 
 /**
  * Класс используется для обертки POST сообщения от клиента и дальнейшей записи в БД

@@ -1,4 +1,4 @@
-package ru.edu.ResumeParseServer.model;
+package ru.edu.resumeparseserver.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;

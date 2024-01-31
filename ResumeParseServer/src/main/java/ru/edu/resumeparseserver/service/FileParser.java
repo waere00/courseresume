@@ -1,13 +1,13 @@
-package ru.edu.ResumeParseServer.service;
+package ru.edu.resumeparseserver.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.edu.ResumeParseServer.model.Resume;
-import ru.edu.ResumeParseServer.model.ResumeTemp;
-import ru.edu.ResumeParseServer.model.Users;
-import ru.edu.ResumeParseServer.repository.UserRepository;
-import ru.edu.ResumeParseServer.repository.ResumeRepository;
+import ru.edu.resumeparseserver.model.Resume;
+import ru.edu.resumeparseserver.model.ResumeTemp;
+import ru.edu.resumeparseserver.model.Users;
+import ru.edu.resumeparseserver.repository.UserRepository;
+import ru.edu.resumeparseserver.repository.ResumeRepository;
 import java.util.List;
 
 /**

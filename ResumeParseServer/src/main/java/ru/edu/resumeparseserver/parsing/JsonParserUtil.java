@@ -1,10 +1,10 @@
-package ru.edu.ResumeParseServer.parsing;
+package ru.edu.resumeparseserver.parsing;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import ru.edu.ResumeParseServer.model.Resume;
+import ru.edu.resumeparseserver.model.Resume;
 
 import java.io.FileReader;
 import java.io.IOException;

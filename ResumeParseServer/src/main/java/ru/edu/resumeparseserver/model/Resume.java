@@ -1,4 +1,4 @@
-package ru.edu.ResumeParseServer.model;
+package ru.edu.resumeparseserver.model;
 
 import jakarta.persistence.*;
 
@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 @Table(name = "resumes")
 public class Resume {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "resumeId")
@@ -42,7 +42,7 @@ public class Resume {
     @Column(name = "salary", length = 65535)
     private String salary;
 
-    @Column(name = "skills", length = 65535)
+    @Column(name = "skills", length = 365535)
     private String skills;
 
     @Column(name = "actions", length = 65535)
@@ -60,7 +60,7 @@ public class Resume {
     @Column(name = "schedule", length = 65535)
     private String schedule;
 
-    @Column(name = "education", length = 65535)
+    @Column(name = "education", length = 265535)
     private String education;
 
     @Column(name ="favorited")
@@ -69,7 +69,7 @@ public class Resume {
     @Column(name = "lastName", length = 65535)
     private String lastName;
 
-    @Column(name = "portfolio", length = 65535)
+    @Column(name = "portfolio", length = 365535)
     private String portfolio;
 
     @Column(name = "schedules", length = 65535)

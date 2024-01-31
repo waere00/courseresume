@@ -1,4 +1,4 @@
-package ru.edu.ResumeParseServer.model;
+package ru.edu.resumeparseserver.model;
 public class UserDTO {
     private String login;
     private String password;

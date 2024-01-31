@@ -1,8 +1,8 @@
-package ru.edu.ResumeParseServer.controller;
+package ru.edu.resumeparseserver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.edu.ResumeParseServer.model.ResumeTemp;
-import ru.edu.ResumeParseServer.parsing.*;
+import ru.edu.resumeparseserver.model.ResumeTemp;
+import ru.edu.resumeparseserver.parsing.*;
 import com.google.gson.JsonSyntaxException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import ru.edu.ResumeParseServer.model.Resume;  // Import your Resumes class
-import ru.edu.ResumeParseServer.service.FileParser;
+import ru.edu.resumeparseserver.model.Resume;  // Import your Resumes class
+import ru.edu.resumeparseserver.service.FileParser;
 
 /**
  * Контроллер для взаимосвязи с клиентами по RESTful
