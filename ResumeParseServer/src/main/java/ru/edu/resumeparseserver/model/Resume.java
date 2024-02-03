@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 @Table(name = "resumes")
 public class Resume {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "resumeId")
