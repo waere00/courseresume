@@ -141,24 +141,24 @@ public class Controller implements Initializable {
     }
 
 
-    /**
-     * Метод посылает POST запрос на сервер
-     *
-     * @throws IOException
-     */
-    @FXML
-    private void sendToServer() {
-            ResumeTemp resumeTemp = new ResumeTemp(
-                    textFieldAreaName.getText(),
-                    textFieldTitle.getText(),
-                    textFieldSkills.getText(),
-                    textFieldGender.getText(),
-                    textFieldAlternateUrl.getText()
-            );
-            Gson gson = new Gson();
-            String jsonString = toJson(resumeTemp);
-            uploadToServer(jsonString, labelText);
-    }
+//    /**
+//     * Метод посылает POST запрос на сервер
+//     *
+//     * @throws IOException
+//     */
+//    @FXML
+//    private void sendToServer() {
+//            ResumeTemp resumeTemp = new ResumeTemp(
+//                    textFieldAreaName.getText(),
+//                    textFieldTitle.getText(),
+//                    textFieldSkills.getText(),
+//                    textFieldGender.getText(),
+//                    textFieldAlternateUrl.getText()
+//            );
+//            Gson gson = new Gson();
+//            String jsonString = toJson(resumeTemp);
+//            uploadToServer(jsonString, labelText);
+//    }
 
     @FXML
     private Tab tab = new Tab();
@@ -304,6 +304,7 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchCategory.setItems(FXCollections.observableArrayList("Все", "Город", "Пол", "Должность", "Навыки", "URL"));
         searchCategory.getSelectionModel().selectFirst();
+        getResumesFromTable();
     }
 
     @FXML
