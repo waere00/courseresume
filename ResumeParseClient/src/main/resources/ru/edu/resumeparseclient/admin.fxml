@@ -48,25 +48,6 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab fx:id="tab" text="Добавить резюме">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <Label layoutX="25.0" layoutY="25.0" prefHeight="27.0" prefWidth="58.0" text="Город" />
-                                <TextField fx:id="textFieldAreaName" layoutX="95.0" layoutY="25.0" promptText="Москва" />
-                                <Label layoutX="25.0" layoutY="65.0" text="Должность" />
-                                <TextField fx:id="textFieldTitle" layoutX="95.0" layoutY="65.0" promptText="Java - разработчик" />
-                                <Label layoutX="25.0" layoutY="100.0" text="Навыки" />
-                                <TextArea fx:id="textFieldSkills" layoutX="95.0" layoutY="100.0" prefHeight="54.0" prefWidth="430.0" promptText="Java Developer" />
-                                <Label layoutX="25.0" layoutY="180.0" text="Пол" />
-                                <TextField fx:id="textFieldGender" layoutX="95.0" layoutY="180.0" />
-                                <Label layoutX="25.0" layoutY="230.0" text="Ссылка на резюме" />
-                                <TextField fx:id="textFieldAlternateUrl" layoutX="140.0" layoutY="225.0" prefHeight="26.0" prefWidth="387.0" />
-                                <Button fx:id="buttonSendToServer" layoutX="25.0" layoutY="280.0" mnemonicParsing="false" onAction="#sendToServer" prefHeight="26.0" prefWidth="138.0" text="Отправить на сервер" />
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
                 <Tab fx:id="jsonUploadTab" text="Загрузить JSON">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -82,13 +63,13 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Label layoutX="321.0" layoutY="41.0" text="Загркзка JSON файла">
+                                <Label layoutX="321.0" layoutY="41.0" text="Загрузка JSON файла">
                                     <font>
                                         <Font size="20.0" />
                                     </font></Label>
-                                <Label fx:id="UploadLabel" layoutX="344.0" layoutY="84.0" prefHeight="18.0" prefWidth="161.0" text="Пожалуйста загрузите файл" />
+                                <Label fx:id="UploadLabel" layoutX="344.0" layoutY="84.0" prefHeight="18.0" prefWidth="161.0" text="Пожалуйста, выберите файл" />
 
-                                <TextField fx:id="filePathField" editable="false" layoutX="323.0" layoutY="124.0" prefHeight="39.0" prefWidth="310.0" promptText="Выберете JSON файл..." />
+                                <TextField fx:id="filePathField" editable="false" layoutX="323.0" layoutY="124.0" prefHeight="39.0" prefWidth="310.0" promptText="Выберите JSON файл..." />
                                 <Button layoutX="243.0" layoutY="124.0" onAction="#browseButtonAction" prefHeight="40.0" prefWidth="69.0" text="Выбрать" />
 
                                 <Button layoutX="381.0" layoutY="189.0" onAction="#uploadButtonAction" prefHeight="40.0" prefWidth="75.0" text="Загрузить" />

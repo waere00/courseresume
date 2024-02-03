@@ -109,8 +109,8 @@ import java.nio.charset.StandardCharsets;
         @Override
         public void start(Stage stage) throws Exception {
             FXMLLoader fxmlLoader = new FXMLLoader(RegisterController.class.getResource("login.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1200, 350);
-            stage.setTitle("Вход в систему");
+            Scene scene = new Scene(fxmlLoader.load(), 850, 350);
+            stage.setTitle("Система для работы с резюме");
             stage.setScene(scene);
             stage.show();
         }
@@ -182,7 +182,7 @@ import java.nio.charset.StandardCharsets;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 850, 350);
-            stage.setTitle("Login");
+            stage.setTitle("Система для работы с резюме");
             stage.setScene(scene);
         }
 

@@ -11,7 +11,7 @@ public class ResumeClientApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 850, 350);
-        stage.setTitle("Login");
+        stage.setTitle("Система для работы с резюме");
         stage.setScene(scene);
         stage.show();
     }

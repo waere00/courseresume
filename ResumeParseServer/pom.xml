@@ -81,6 +81,10 @@
 				<version>3.6.3</version>
 				<configuration>
 					<source>17</source>
+					<outputDirectory>docs</outputDirectory>
+					<sourceFileIncludes>
+						<sourceFileInclude>**/*.java</sourceFileInclude>
+					</sourceFileIncludes>
 				</configuration>
 			</plugin>
 		</plugins>
