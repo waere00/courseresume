@@ -1,6 +1,7 @@
 ## Инструкции
 
 Необходимо наличие Java 17 в системе. Запускать обязательно с -Dfile.encoding=UTF8.
+
 Подключение к H2 БД: 
 spring.datasource.url=jdbc:h2:~/resume_parse
 spring.datasource.username=root
