@@ -36,7 +36,7 @@ public class Controller {
         if (!dataService.loadResumes(resumeList)){
             return "Data loaded successfully";
         }else{
-            return "Error when loading data";
+            return "Ok?";
         }
     }
 
